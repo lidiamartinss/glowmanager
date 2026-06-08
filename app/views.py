@@ -1,6 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Cliente, Profissional, Servico, Agendamento
+from .models import (
+    Cliente, Profissional, Servico, Agendamento, 
+    AvaliacaoServico, Categoria, Cidade, Especialidade, 
+    FichaEvolucao, Ocupacao, Produto, TurnoTrabalho, Turno, Unidade
+)
 from .forms import ClienteForm, ProfissionalForm, ServicoForm, AgendamentoForm
 
 # 1. Requisito: Página Inicial
@@ -31,6 +35,71 @@ def consulta_servicos(request):
 def consulta_agendamentos(request):
     lista_agendamentos = Agendamento.objects.all()
     return render(request, 'consulta_agendamentos.html', {'agendamentos': lista_agendamentos})
+
+
+
+# Requisito: Consulta de Avaliações de Serviços
+@login_required
+def consulta_avaliacoes(request):
+    lista_avaliacoes = AvaliacaoServico.objects.all()
+    return render(request, 'consulta_avaliacoes.html', {'avaliacoes': lista_avaliacoes})
+
+# Requisito: Consulta de Categorias
+@login_required
+def consulta_categorias(request):
+    lista_categorias = Categoria.objects.all()
+    return render(request, 'consulta_categorias.html', {'categorias': lista_categorias})
+
+# Requisito: Consulta de Cidades
+@login_required
+def consulta_cidades(request):
+    lista_cidades = Cidade.objects.all()
+    return render(request, 'consulta_cidades.html', {'cidades': lista_cidades})
+
+# Requisito: Consulta de Especialidades
+@login_required
+def consulta_especialidades(request):
+    lista_especialidades = Especialidade.objects.all()
+    return render(request, 'consulta_especialidades.html', {'especialidades': lista_especialidades})
+
+# Requisito: Consulta de Ficha de Evoluções
+@login_required
+def consulta_fichas(request):
+    lista_fichas = FichaEvolucao.objects.all()
+    return render(request, 'consulta_fichas.html', {'fichas': lista_fichas})
+
+# Requisito: Consulta de Ocupações
+@login_required
+def consulta_ocupacoes(request):
+    lista_ocupacoes = Ocupacao.objects.all()
+    return render(request, 'consulta_ocupacoes.html', {'ocupacoes': lista_ocupacoes})
+
+# Requisito: Consulta de Produtos
+@login_required
+def consulta_produtos(request):
+    lista_produtos = Produto.objects.all()
+    return render(request, 'consulta_produtos.html', {'produtos': lista_produtos})
+
+# Requisito: Consulta de Turno de Trabalhos
+@login_required
+def consulta_turno_trabalhos(request):
+    lista_turno_trabalhos = TurnoTrabalho.objects.all()
+    return render(request, 'consulta_turno_trabalhos.html', {'turno_trabalhos': lista_turno_trabalhos})
+
+# Requisito: Consulta de Turnos
+@login_required
+def consulta_turnos(request):
+    lista_turnos = Turno.objects.all()
+    return render(request, 'consulta_turnos.html', {'turnos': lista_turnos})
+
+# Requisito: Consulta de Unidades
+@login_required
+def consulta_unidades(request):
+    lista_unidades = Unidade.objects.all()
+    return render(request, 'consulta_unidades.html', {'unidades': lista_unidades})
+
+
+# --- SUAS FUNÇÕES DE EXCLUSÃO E EDIÇÃO (MANTIDAS IGUAIS) ---
 
 # 6. Requisito: Excluir Cliente
 @login_required
